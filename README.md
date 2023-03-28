@@ -38,8 +38,14 @@ We are given a file to download as seen in the image. Upon downloading the file,
 
 ## Task #7: Reverse it or read it
 ![Question 7](https://raw.githubusercontent.com/sloan-ireland/Images/main/28.03.2023_12.43.16_REC.png)
-Once again we are provided a file with no prompt on any sort of process or action to do with it. The first logical thing to do with it is open it. Depending on the text editor you use, the file may not render meaning there are non-ASCII characters in the file. We can use the `cat` command to view the file in terminal. The flag is hidden somewhere in the readable characters. Searching the terminal can be a bit tedious so using the grep command below:
+Once again we are provided a file with no prompt on any sort of process or action to do with it. The first logical thing to do with it is open it. Depending on the text editor you use, the file may not render meaning there are non-ASCII characters in the file. We can use the `cat` command to view the file in terminal. The flag is hidden somewhere in the readable characters. Searching the terminal can be a bit tedious so we can print only the wanted flag using the grep command below:
 ```
-grep -o --binary-file=text -E 'THM{.*}' hello.txt
+grep -o --binary-file=text -E 'THM{.*}' hello.hello
 ```
 The `-o` flag returns only the matching segment of the line that matches the given pattern. The `-E` flag specifies the pattern using a regex expression that starts with THM followed by curly brackets with any number of characters in between them. The `--binary-file=text` segment forces grep to run on a binary file as grep will return an error otherwise. 
+
+## Task #8: Another Decoding Stuff
+![Question 8](https://raw.githubusercontent.com/sloan-ireland/Images/main/28.03.2023_13.04.27_REC.png)
+Another base<some_number> flag! Yay! Now you get to practice using the terminal to decode this. Through eirther your skilled observation or the provided hint you have figured out this is in `base58`. Refer back to Task 2 to try and figure out the command for yourself (click on the button below if you need the answer).
+
+<button onclick="alert('`echo -n 3agrSy1CewF9v8ukcSkPSYm3oKUoByUpKG4L | base58 -d`')">Task 8 Command</button>
