@@ -41,7 +41,18 @@ Because the flag is in ASCII characters you can also use the command from task s
 
 ## Task 4: Mon, are we going to be okay?
 ![Question 4](https://raw.githubusercontent.com/sloan-ireland/Images/main/29.03.2023_13.13.28_REC.png)
+Yet another image for us to work with. There are mutliple ways to hide data within an image whether it be in the photo info (like the header), metadata, the pixels, or the bits that encode the color. Here is the image is hidden via bit manipulation. Using a tool called steghide we can extract any hidden message to a text file using the following command: 
+```
+steghide extract -sf Extinction.jpg
+```
+You will then be promopted for a password. When data is encrypted it becomes much harder to gain access to the hidden message. Lucky for us the person who encryted this message didn't set a password so we can just hit enter. 
 
+You should see the following message
+```
+wrote extracted data to "Final_message.txt".
+```
+All thats left to do is to `cat` Final_message.txt and see what message awaits us (see below)
+![yollo](https://raw.githubusercontent.com/sloan-ireland/Images/main/30.03.2023_10.45.02_REC.png)
 
 ## Task #5: Erm......Magick
 ![Question2](https://raw.githubusercontent.com/sloan-ireland/Images/main/27.03.2023_16.44.47_REC.png)
