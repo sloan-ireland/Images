@@ -8,7 +8,7 @@ The room consists of a couple of tasks, touching on a different skill in some wa
 ## Task 2: What does the `base` say?
 ![Question 1](https://raw.githubusercontent.com/sloan-ireland/Images/main/27.03.2023_12.23.12_REC.png "Da Question")
 
-The flag for this task is in some form of `base` which according to the hint is `base64`. We can also assume the form is proabably `base32` or `base64` because of the = at the end which these base forms commonly have due to the base form of `}` having an equal sign. This one of the more prevalent binary-to-text encoding schemes but there are many forms of ```base``` that can be used. 
+The flag for this task is in some form of `base` which according to the hint is `base64`. We can also assume the form is probably `base32` or `base64` because of the = at the end which these base forms commonly have due to the base form of `}` having an equal sign. This one of the more prevalent binary-to-text encoding schemes but there are many forms of ```base``` that can be used. 
 
 If another `base` was used for encoding, you can determine the `base` by examining the characters used in the encoded string. Each `base` has its own set of characters that are used for encoding, so you can look for those specific characters to determine which `base` was used. Here are some examples of different bases and their associated characters:
 
@@ -28,7 +28,7 @@ If you can't figure out what base encoding was used or your computer doesn't hav
 
 ## Task 3: Meta meta
 ![Q2](https://raw.githubusercontent.com/sloan-ireland/Images/main/29.03.2023_12.22.57_REC.png)
-Given the name of this task we can assume we need to look at the metadata of the file. The [Findme.jpg](https://raw.githubusercontent.com/sloan-ireland/Images/main/Findme.jpg) file doesn't reveal anything at first glance so off to the terminal we go. We can use an EXIF tool to look at the metadeta using the following command:
+Given the name of this task we can assume we need to look at the metadata of the file. The [Findme.jpg](https://raw.githubusercontent.com/sloan-ireland/Images/main/Findme.jpg) file doesn't reveal anything at first glance so off to the terminal we go. We can use an EXIF tool to look at the metadata using the following command:
 ```
 exiftool Findme.jpg
 ```
@@ -41,17 +41,17 @@ Because the flag is in ASCII characters you can also use the command from task s
 
 ## Task 4: Mon, are we going to be okay?
 ![Question 4](https://raw.githubusercontent.com/sloan-ireland/Images/main/29.03.2023_13.13.28_REC.png)
-Yet another image for us to work with. There are mutliple ways to hide data within an image whether it be in the photo info (like the header), metadata, the pixels, or the bits that encode the color. Here is the image is hidden via bit manipulation. Using a tool called steghide we can extract any hidden message to a text file using the following command: 
+Yet another image for us to work with. There are multiple ways to hide data within an image whether it be in the photo info (like the header), metadata, the pixels, or the bits that encode the color. Here is the image is hidden via bit manipulation. Using a tool called steghide we can extract any hidden message to a text file using the following command: 
 ```
 steghide extract -sf Extinction.jpg
 ```
-You will then be promopted for a password. When data is encrypted it becomes much harder to gain access to the hidden message. Lucky for us the person who encryted this message didn't set a password so we can just hit enter. 
+You will then be prompted for a password. When data is encrypted it becomes much harder to gain access to the hidden message. Lucky for us the person who encrpyted this message didn't set a password so we can just hit enter. 
 
 You should see the following message
 ```
 wrote extracted data to "Final_message.txt".
 ```
-All thats left to do is to `cat` Final_message.txt and see what message awaits us (see below)
+All that is left to do is to `cat` Final_message.txt and see what message awaits us (see below)
 ![yollo](https://raw.githubusercontent.com/sloan-ireland/Images/main/30.03.2023_10.45.02_REC.png)
 
 Visit this [biOs wiki](https://wiki.bi0s.in/steganography/steghide/) entry to read more about steghide.
@@ -76,13 +76,13 @@ The `-o` flag returns only the matching segment of the line that matches the giv
 
 ## Task #8: Another Decoding Stuff
 ![Question 8](https://raw.githubusercontent.com/sloan-ireland/Images/main/28.03.2023_13.04.27_REC.png)
-Another base<some_number> flag! Yay! Now you get to practice using the terminal to decode this. Through eirther your skilled observation or the provided hint you have figured out this is in `base58`. Refer back to Task 2 to try and figure out the command for yourself.
+Another base<some_number> flag! Yay! Now you get to practice using the terminal to decode this. Through either your skilled observation or the provided hint you have figured out this is in `base58`. Refer back to Task 2 to try and figure out the command for yourself.
 
 ## Task #9: Left or right
 ![Question 9](https://raw.githubusercontent.com/sloan-ireland/Images/main/30.03.2023_13.56.17_REC.png)
-The answer to this task is given, but is encrypted. Rot13 is mentioned in the prompt which is a Ceasar Cipher, but is not the encryption method. This is a hint that the encryption is one of the Ceasar Ciphers. A Ceasar cipher works by rotating each letter in the text by a certain number of letters. If the shift was one then A -> B, B -> C, C -> D and so on. Letters wrap back around so Z -> A (shift = 1). You can write a program to do this pretty easily and then analyze the freuquecny analaysis of each rotated string. By comparing the letter frequcny of each string to that of normal english you can decode the string. You can also just print out all possible rotated strings (there are only 25) and see which one makes sense. Check out this link from [Tutorials point](https://www.tutorialspoint.com/caesar-cipher-in-cryptography#) to read more about Ceasar ciphers and see how to write a decoder in python. 
+The answer to this task is given, but is encrypted. Rot13 is mentioned in the prompt which is a Caesar Cipher, but is not the encryption method. This is a hint that the encryption is one of the Caesar Ciphers. A Caesar cipher works by rotating each letter in the text by a certain number of letters. If the shift was one then A -> B, B -> C, C -> D and so on. Letters wrap back around so Z -> A (shift = 1). You can write a program to do this pretty easily and then analyze the frequency analysis of each rotated string. By comparing the letter frequency of each string to that of normal english you can decode the string. You can also just print out all possible rotated strings (there are only 25) and see which one makes sense. Check out this link from [Tutorials point](https://www.tutorialspoint.com/caesar-cipher-in-cryptography#) to read more about Caesar ciphers and see how to write a decoder in python. 
 
-For those that are too lazy to write their own code, you can use the [Dcode](https://www.dcode.fr/caesar-cipher) Ceasar cipher decoder.
+For those that are too lazy to write their own code, you can use the [Dcode](https://www.dcode.fr/caesar-cipher) Caesar cipher decoder.
 
 ![dcoe 14](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_17.30.59_REC.png)
 
@@ -123,7 +123,7 @@ As can be seen by looking at the hint, this language is known as Brainf_ck. Tryi
 ## Task 14: An exclusive!
 ![task 24](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_17.46.56_REC.png)
 
-S1 and S2. Two strings! Oh what to do? According to the hint we need to XOR the two strings together. XOR stands for 'exclsive or' and is an bitwise logical operator that uses two binary values. It returns a 1 if and only if between corresponding bits only one operand is a 1. Writing a program in any language to do this is pretty straightforward. An example of a python program that does this is below.
+S1 and S2. Two strings! Oh what to do? According to the hint we need to XOR the two strings together. XOR stands for 'exclusive or' and is an bitwise logical operator that uses two binary values. It returns a 1 if and only if between corresponding bits only one operand is a 1. Writing a program in any language to do this is pretty straightforward. An example of a python program that does this is below.
 ```python
 #!/usr/bin/env python3
 string1 = "44585d6b2368737c65252166234f20626d" 
@@ -166,4 +166,17 @@ To extract the file run the following command:
 binwalk -e hell.jpg
 ```
 The `-e` flag extracts all known file types embedded in the image. The extracted files will be in a new subdirectory called _hell.jpg.extracted. From there it is a simple matter to open the hell_there.txt file and get the flag. 
+
+## Task 16: Darkness
+![task 16](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_19.53.15_REC.png)
+
+Great. The downloaded image is just plain black. Something is hidden yet again. Looking at the hint we need to use stegsolve. This tool extracts hidden data from the pixels themselves by scanning through different color filters. Install stegsolve following the instructions in this [bi0s wiki](https://wiki.bi0s.in/steganography/stegsolve/#installation) article. Once you run the last command in the article (make sure you are in the bin folder) you should see a window like the one below open up. You can then click on File -> Open and select dark.png as the image you want to analyze. 
+
+![stegsolve](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_19.45.14_REC.png)
+
+From there you can click through the different color filters using the arrows at the bottom of the window. The first few won't show anything, but just keep clicking through. Some of the filters will reveal the flag. 
+
+There is an online tool you can use as well: [Aperi'Solve](https://www.aperisolve.com)
+
+![online](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_19.49.27_REC.png)
 
