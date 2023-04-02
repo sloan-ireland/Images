@@ -54,6 +54,8 @@ wrote extracted data to "Final_message.txt".
 All thats left to do is to `cat` Final_message.txt and see what message awaits us (see below)
 ![yollo](https://raw.githubusercontent.com/sloan-ireland/Images/main/30.03.2023_10.45.02_REC.png)
 
+Visit this [biOs wiki](https://wiki.bi0s.in/steganography/steghide/) entry to read more about steghide.
+
 ## Task #5: Erm......Magick
 ![Question2](https://raw.githubusercontent.com/sloan-ireland/Images/main/27.03.2023_16.44.47_REC.png)
 As there is no given file to download or text to work with a safe guess is that the flag is hidden somewhere on the web page in the HTML. You can right click on different elements on the webpage to try and find the flag.
@@ -74,6 +76,75 @@ The `-o` flag returns only the matching segment of the line that matches the giv
 
 ## Task #8: Another Decoding Stuff
 ![Question 8](https://raw.githubusercontent.com/sloan-ireland/Images/main/28.03.2023_13.04.27_REC.png)
-Another base<some_number> flag! Yay! Now you get to practice using the terminal to decode this. Through eirther your skilled observation or the provided hint you have figured out this is in `base58`. Refer back to Task 2 to try and figure out the command for yourself (click on the button below if you need the answer).
+Another base<some_number> flag! Yay! Now you get to practice using the terminal to decode this. Through eirther your skilled observation or the provided hint you have figured out this is in `base58`. Refer back to Task 2 to try and figure out the command for yourself.
 
-<button onclick="alert('echo -n 3agrSy1CewF9v8ukcSkPSYm3oKUoByUpKG4L | base58 -d')">Task 8 Command</button>
+## Task #9: Left or right
+![Question 9](https://raw.githubusercontent.com/sloan-ireland/Images/main/30.03.2023_13.56.17_REC.png)
+The answer to this task is given, but is encrypted. Rot13 is mentioned in the prompt which is a Ceasar Cipher, but is not the encryption method. This is a hint that the encryption is one of the Ceasar Ciphers. A Ceasar cipher works by rotating each letter in the text by a certain number of letters. If the shift was one then A -> B, B -> C, C -> D and so on. Letters wrap back around so Z -> A (shift = 1). You can write a program to do this pretty easily and then analyze the freuquecny analaysis of each rotated string. By comparing the letter frequcny of each string to that of normal english you can decode the string. You can also just print out all possible rotated strings (there are only 25) and see which one makes sense. Check out this link from [Tutorials point](https://www.tutorialspoint.com/caesar-cipher-in-cryptography#) to read more about Ceasar ciphers and see how to write a decoder in python. 
+
+For those that are too lazy to write their own code, you can use the [Dcode](https://www.dcode.fr/caesar-cipher) Ceasar cipher decoder.
+
+![dcoe 14](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_17.30.59_REC.png)
+
+## Task 10: Make a Comment
+![Task 10](https://raw.githubusercontent.com/sloan-ireland/Images/main/30.03.2023_13.55.44_REC.png)
+Nothing is provided. No text, image or data to work with. But we are provided with a hint. The title of the task. Comments made in the HTML of a webpage are not visible unless one looks at the raw webpage code. Right click on some text in the task, hit inspect to view the HTML. Happy hunting!
+
+![HTML](https://raw.githubusercontent.com/sloan-ireland/Images/main/30.03.2023_13.53.59_REC.png)
+
+## Task 11: 
+A broken PNG file. After downloading the image, it becomes clear we cannot view the contents of the image. This means the file data must be corrupted. Let's take a look at the bytes of the file using `xxd`. Using the command below we can write the hexdump to a file (name it whatever) without any metadata.
+```
+xxd -p spoil.png > hexdump.txt
+```
+Now when we `cat` the file we can see that the file is corrupted. PNG type files start with an eight byte signature shown below in hex: 
+```
+89 50 4E 47 0d 0a 1a 0a
+```
+The first line of the hexdump file is shown below and the first couple of bytes clearly don't match the signature. 
+```
+2333445f0d0a1a0a0000000d4948445200000320000003200806000000db
+```
+We can use a text editor to change the first eight bytes so they match the PNG file signature. Then using this next command we can reverse the hexdump back to binary and saved it as the original image. The image can now be opened without any problems.
+```
+xxd -p -r hexdump.txt > spoil.png
+```
+
+## Task 12: Read it
+![q12](https://raw.githubusercontent.com/sloan-ireland/Images/main/30.03.2023_17.57.36_REC.png)
+This is a very difficult task. The flag is hidden on a THM social media which according to the hint is Reddit. Once you find the tryhackme subreddit, search for a post called "New Room Coming Soon." The flag is under that post. 
+
+## Task 13: Spin my head
+![q13](https://raw.githubusercontent.com/sloan-ireland/Images/main/31.03.2023_10.46.19_REC.png)
+As can be seen by looking at the hint, this language is known as Brainf_ck. Trying to decipher into plaintext by hand is a pain. Use the Brainf_ck interpreter on [dcode](https://www.dcode.fr/brainfuck-language) to the flag to plaintext. 
+
+![Dcode](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*cXDmfpsgpsSt1O2bRAtZ6A.png)
+
+## Task 14: An exclusive!
+![task 24](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_17.46.56_REC.png)
+
+S1 and S2. Two strings! Oh what to do? According to the hint we need to XOR the two strings together. XOR stands for 'exclsive or' and is an bitwise logical operator that uses two binary values. It returns a 1 if and only if between corresponding bits only one operand is a 1. Writing a program in any language to do this is pretty straightforward. An example of a python program that does this is below.
+```python
+#!/usr/bin/env python3
+string1 = "44585d6b2368737c65252166234f20626d" 
+string2 = "1010101010101010101010101010101010"
+
+result = "" 
+for i in range(0, len(string1), 2): # loop through the strings in pairs of 2
+# Get the hexadecimal pairs from each string
+pair1 = string1[i:i+2]
+pair2 = string2[i:i+2]
+
+# XOR the two pairs together
+xor_val = int(pair1, 16) ^ int(pair2, 16)
+
+# Convert the result to a character and add it to the result string
+result += chr(xor_val)
+
+print(result)
+``` 
+Like most tasks though, this can also be done with an online converter such as [this](https://xor.pw/#) one. 
+
+![decode 14](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_17.47.18_REC.png)
+
+## Task 15: 
