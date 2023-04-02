@@ -147,4 +147,23 @@ Like most tasks though, this can also be done with an online converter such as [
 
 ![decode 14](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_17.47.18_REC.png)
 
-## Task 15: 
+## Task 15: Binary Walk
+![task 15](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_18.45.37_REC.png)
+
+Looks like a nasty place to be. This could certainly be an entrance to hell yet sadly there doesn't appear to be a flag. Here we need to extract hidden data from this file.
+
+![hell](https://raw.githubusercontent.com/sloan-ireland/Images/main/hell.jpg)
+ According to the hint that tool we need to use is binwalk. Binwalk is a tool used to extract embedded code and files from binary files. There are a lot of different flags and specifying commands about what files to extract and what to do with them. But to get a very brief overview of the image we can run the command: 
+```
+binwalk hell.jpg
+```
+We get the resulting text that tells us there is an obvious file named hello_there.txt that can be extracted as been below:
+
+![data](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_18.46.42_REC.png)
+
+To extract the file run the following command:
+```
+binwalk -e hell.jpg
+```
+The `-e` flag extracts all known file types embedded in the image. The extracted files will be in a new subdirectory called _hell.jpg.extracted. From there it is a simple matter to open the hell_there.txt file and get the flag. 
+
