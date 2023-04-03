@@ -180,12 +180,12 @@ There is an online tool you can use as well: [Aperi'Solve](https://www.aperisolv
 
 ![online](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_19.49.27_REC.png)
 
-## Task 17: 
+## Task 17:  A sounding QR
 ![taks 17](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_20.00.22_REC.png)
 
 Didn't think I would see another QR code. Very straightforward. Scanning the QR code takes you to a soundcloud audio page. Listen and you'll get the flag. It might take you a few tries. Like quite a few...
 
-## Task 18: 
+## Task 18: Dig up the past
 ![task 18](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_20.00.44_REC.png)
 
 Visiting the given URL doesn't show anything of use. Because as the prompt says the targeted time is history. Luckily we have a time machine: The Internet Archive's [Wayback Machine](http://web.archive.org/). Only thing it works on is websites though. It can only show us specific instances in the history of that website. Putting in the provided URL and checking the saved snapshots we see one was taken on Jan. 2, 2020. 
@@ -195,3 +195,42 @@ Visiting the given URL doesn't show anything of use. Because as the prompt says 
 Scrolling down on that snapshot will lead you to a post with the flag. 
 
 ![entrhy](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_20.55.01_REC.png)
+
+## Task 19: Uncrackable!
+![task 19](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_21.35.02_REC.png)
+
+With a mention of a key, there are multiple ciphers that come to mind, but the hint clearly says we are dealing with a Vigenère cipher. The Vigenère cipher is a Polyalphabetic cipher that uses 26 different substitution ciphers. A string of text key is used to determine which cipher to use. The keyword is looped when the message is shorter than the key. Using a table such as the one below you can encode and decode such a cipher. The top row is for the key letter and the left column is for the plaintext. 
+
+![table](https://konstantinnovation.github.io/img/tabularecta.jpg)
+
+It is possible to crack a Vigenère cipher on a longer text using frequency analysis as there are overlaps in letter repetition in the coded text due to key length. But with such a short text and not knowing the key, we need to use an online decoder. We again turn to the [Dcode](https://www.dcode.fr/vigenere-cipher) website for online cipher crackers. 
+
+![decode vig](https://raw.githubusercontent.com/sloan-ireland/Images/main/03.04.2023_01.19.34_REC.png)
+
+## Task 20: Small bases
+![task 20](https://raw.githubusercontent.com/sloan-ireland/Images/main/03.04.2023_00.45.47_REC.png)
+
+String of numbers. Go decode it. Without the hint telling us we have decimal that needs to be converted to hex and then to ASCII, it would be very hard indeed to get the flag for this task. These simple conversions can be done by following these steps: 
+
+1. Open python in the terminal by typing `python3`. Your screen should look similar to the terminal below. 
+
+![python3](https://raw.githubusercontent.com/sloan-ireland/Images/main/03.04.2023_01.38.12_REC.png)
+
+2. Call this function to convert the dec to hex:
+```python
+hex(581695969015253365094191591547859387620042736036246486373595515576333693)
+```
+3. Copy the result (without the single quotations) and exit the python shell by hitting Ctrl+D. 
+4. Run the following command for the flag:
+```
+echo -n "<result of step 2>" | xxd -r -p
+```
+
+## Task 21: Read the packet
+![task21](https://raw.githubusercontent.com/sloan-ireland/Images/main/03.04.2023_01.57.05_REC.png)
+
+A file with the .pcapng extension. This is dump of data packets sent over a network. To make our lives easy let's use Wireshark, a tool used to capture and analyze data packets. It can be installed using `sudo`. Once you have wireshark installed just run `wireshark flag.pcapng`. This will open up the wireshark window listing all the data about the packets.
+
+Click Ctrl-F so the search bar pops up. Enter THM{ to search for the packet that contains the flag. Make sure you are searching under packet details otherwise the search won't register
+
+![wire](https://raw.githubusercontent.com/sloan-ireland/Images/main/03.04.2023_01.58.23_REC.png)
