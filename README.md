@@ -180,3 +180,18 @@ There is an online tool you can use as well: [Aperi'Solve](https://www.aperisolv
 
 ![online](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_19.49.27_REC.png)
 
+## Task 17: 
+![taks 17](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_20.00.22_REC.png)
+
+Didn't think I would see another QR code. Very straightforward. Scanning the QR code takes you to a soundcloud audio page. Listen and you'll get the flag. It might take you a few tries. Like quite a few...
+
+## Task 18: 
+![task 18](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_20.00.44_REC.png)
+
+Visiting the given URL doesn't show anything of use. Because as the prompt says the targeted time is history. Luckily we have a time machine: The Internet Archive's [Wayback Machine](http://web.archive.org/). Only thing it works on is websites though. It can only show us specific instances in the history of that website. Putting in the provided URL and checking the saved snapshots we see one was taken on Jan. 2, 2020. 
+
+![snapshot](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_20.59.20_REC.png)
+
+Scrolling down on that snapshot will lead you to a post with the flag. 
+
+![entrhy](https://raw.githubusercontent.com/sloan-ireland/Images/main/02.04.2023_20.55.01_REC.png)
